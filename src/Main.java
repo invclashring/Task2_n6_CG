@@ -7,11 +7,11 @@ public class Main extends JPanel {
     private static final int CY = 300;
     private static final int R  = 150;
 
-    private static final double START_ANGLE = Math.PI / 4;
-    private static final double END_ANGLE   = 3 * Math.PI / 2;
+    private static final double START_ANGLE = 3 * Math.PI / 2;
+    private static final double END_ANGLE   = Math.PI / 2;
 
-    private static final Color START_COLOR = Color.RED;
-    private static final Color END_COLOR   = Color.BLUE;
+    private static final Color START_COLOR = Color.BLUE;
+    private static final Color END_COLOR   = Color.RED;
 
     @Override
     protected void paintComponent(Graphics gr) {
@@ -43,6 +43,8 @@ public class Main extends JPanel {
         if (!isAngleInArc(angle, a0, a1)) return;
 
         double t = (angle - a0) / (a1 - a0);
+        t = Math.max(0, Math.min(1, t));
+
         if (t < 0) t += 1;
 
         int red   = (int)(START_COLOR.getRed()   + t * (END_COLOR.getRed()   - START_COLOR.getRed()));
